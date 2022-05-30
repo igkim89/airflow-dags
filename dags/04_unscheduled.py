@@ -16,7 +16,6 @@ dag=DAG(
 fetch_events=BashOperator(
     task_id="fetch_events",
     bash_command=(
-        "mkdir -p /home/igkim/result && "
         "curl -o /home/igkim/result/events.json "
         "https://localhost:5000/events"
     ),
