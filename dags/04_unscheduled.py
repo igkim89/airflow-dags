@@ -10,6 +10,7 @@ dag=DAG(
     dag_id="04_unscheduled",
     start_date=dt.datetime(2022, 5, 25),
     schedule_interval=None,
+    tags=['igkim', 'test'],
 )
 
 fetch_events=BashOperator(
