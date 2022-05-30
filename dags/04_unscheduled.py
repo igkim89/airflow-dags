@@ -1,5 +1,5 @@
-import datetime as
-dt from pathlib import Path
+import datetime as dt
+from pathlib import Path
 
 import pandas as pd
 from airflow import DAG
