@@ -18,7 +18,7 @@ dag=DAG(
 fetch_events=BashOperator(
     task_id="fetch_events",
     bash_command=(
-        "curl -o /opt/airflow/igkim/events.txt"
+        "curl -o /opt/airflow/igkim/execution_date/events.txt"
         " "
         "http://192.168.103.156:4399/events"
     ),
@@ -30,7 +30,7 @@ print_events=BashOperator(
     bash_command=(
         "echo "
         "\"start_date={{execution_date.strftime('%Y-%m-%d')}}\nend_date={{next_execution_date.strftime('%Y-%m-%d')}}\""
-        " >> /opt/airflow/igkim/{{execution_date.strftime('%Y%m%d')}}-{{next_execution_date.strftime('%Y%m%d')}}"
+        " >> /opt/airflow/igkim/execution_date/{{execution_date.strftime('%Y%m%d')}}-{{next_execution_date.strftime('%Y%m%d')}}"
     ),
     dag=dag
 )
