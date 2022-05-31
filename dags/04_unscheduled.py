@@ -17,7 +17,7 @@ fetch_events=BashOperator(
     task_id="fetch_events",
     bash_command=(
         "curl -o /home/igkim/apps/study/result/events.json "
-        "https://localhost:4399/events"
+        "https://192.168.103.156:4399/events"
     ),
     dag=dag,
 )
