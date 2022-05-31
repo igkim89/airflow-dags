@@ -15,7 +15,8 @@ dag=DAG(
 get_data=BashOperator(
     task_id="get_data",
     bash_command=(
-        f"curl -o {DIR_PATH}/wikipageviews-{{ execution_date.strftime('%Y%m%d-%H') }}.gz "
+        f"curl -o {DIR_PATH}/wikipageviews-"
+        "{{ execution_date.strftime('%Y%m%d-%H') }}.gz "
         "https://dumps.wikimedia.org/other/pageviews/"
         "{{ execution_date.year }}/"
         "{{ execution_date.year }}-"
