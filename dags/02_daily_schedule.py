@@ -7,7 +7,7 @@ from airflow.operators.bash import BashOperator
 from airflow.operators.python import PythonOperator
 
 dag=DAG(
-    dag_id="04_unscheduled",
+    dag_id="02_daily_schedule",
     start_date=dt.datetime(2022, 5, 25),
     schedule_interval="@daily",
     tags=['igkim', 'test'],
