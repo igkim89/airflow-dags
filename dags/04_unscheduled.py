@@ -17,6 +17,7 @@ fetch_events=BashOperator(
     task_id="fetch_events",
     bash_command=(
         "curl -o /opt/airflow/igkim/events.txt"
+        " "
         "http://192.168.103.156:4399/events"
     ),
     dag=dag,
