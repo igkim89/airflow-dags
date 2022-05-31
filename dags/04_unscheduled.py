@@ -16,7 +16,7 @@ dag=DAG(
 fetch_events=BashOperator(
     task_id="fetch_events",
     bash_command=(
-        "curl -o /home/igkim/apps/study/result/events.json "
+        "curl -o /opt/airflow/igkim/events.json "
         "http://192.168.103.156:4399/events"
     ),
     dag=dag,
