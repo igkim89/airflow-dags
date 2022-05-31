@@ -10,7 +10,7 @@ dag=DAG(
     dag_id="06_template_query",
     start_date=dt.datetime(year=2022, month=5, day=1),
     end_date=dt.datetime(year=2022, month=5, day=31),
-    schedule_interval=dt.timedelta(days=3),
+    schedule_interval=dt.timedelta(days=1),
     tags=['igkim', 'test'],
 )
 
