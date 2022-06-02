@@ -20,7 +20,7 @@ def _get_data(data_interval_start):
 
     url=(
         "https://dumps.wikimedia.org/other/pageviews/"
-        f"{year}/{year}-{month:0>2}"
+        f"{year}/{year}-{month:0>2}/"
         "pageviews-{{data_interval_start.strftime('%Y%m%d-%H')}}0000.gz"
     )
 
