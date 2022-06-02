@@ -17,9 +17,13 @@ dag=DAG(
 
 def _get_data(data_interval_start):
     year, month, day, hour, *_=data_interval_start.timetuple()
+    print(year)
+    print(month)
+    print(day)
+    print(hour)
     url=(
         "https://dumps.wikimedia.org/other/pageviews/"
-        f"{year}/{year}-{month}"
+        f"{year}/{year}-{month:0>2}"
         "pageviews-{{data_interval_start.strftime('%Y%m%d-%H')}}0000.gz"
     )
     request.urlretrieve(url, DIR_PATH)
