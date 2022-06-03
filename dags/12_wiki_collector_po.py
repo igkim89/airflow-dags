@@ -22,12 +22,12 @@ def _get_data(year, month, day, hour):
     url=(
         "https://dumps.wikimedia.org/other/pageviews/"
         f"{year}/{year}-{month:0>2}/"
-        f"pageviews-{year}{month:0>2}{day}-{hour:0>2}0000.gz"
+        f"pageviews-{year}{month:0>2}{day:0>2}-{hour:0>2}0000.gz"
     )
 
     print(url)
 
-    request.urlretrieve(url, DIR_PATH+f"/{year}{month:0>2}{day}-{hour:0>2}.gz")
+    request.urlretrieve(url, DIR_PATH+f"/{year}{month:0>2}{day:0>2}-{hour:0>2}.gz")
 
 
 get_data=PythonOperator(
