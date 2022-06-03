@@ -1,6 +1,7 @@
-import airflow.utils.dates as dates
+# import airflow.utils.dates as dates
+import pendulum
 from airflow import DAG
-# from airflow.operators.bash import BashOperator
+from airflow.operators.bash import BashOperator
 from airflow.operators.python import PythonOperator
 
 from urllib import request
@@ -9,10 +10,17 @@ DIR_PATH="/opt/airflow/igkim/wiki-po"
 
 dag=DAG(
     dag_id="12_wiki_collector_po",
-    start_date=dates.days_ago(1),
+    # start_date=dates.days_ago(1),
+    start_date=pendulum.today('Asia/Seoul').add(days=-1),
     schedule_interval="@hourly",
     # catchup=False,
     tags=['igkim', 'test'],
+)
+
+extract_gz=BashOperator(
+    task_id="extract_gz",
+    bash_command=f"gunzip --force {DIR_PATH}/{{data_interval_start.strftime('%Y%m%d-%H')}}.gz",
+    dag=dag,
 )
 
 def _get_data(year, month, day, hour):
@@ -42,6 +50,6 @@ get_data=PythonOperator(
     dag=dag,
 )
 
-
+get_data >> extract_gz
 
 
