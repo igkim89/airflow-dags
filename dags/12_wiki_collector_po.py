@@ -15,13 +15,13 @@ dag=DAG(
     tags=['igkim', 'test'],
 )
 
-def _get_data(execution_date):
+def _get_data():
 
-    year, month, day, hour, *_=execution_date.timetuple()
+    # year, month, day, hour, *_=execution_date.timetuple()
 
     url=(
         "https://dumps.wikimedia.org/other/pageviews/"
-        f"{year}/{year}-{month:0>2}/"
+        "{{execution_date.strftime('%Y/%Y-%m')}}/"
         "pageviews-{{execution_date.strftime('%Y%m%d-%H')}}0000.gz"
     )
 
