@@ -18,6 +18,7 @@ dag=DAG(
 def _get_data(dis):
 
     # year, month, day, hour, *_=execution_date.timetuple()
+    print(dis)
 
     url=(
         "https://dumps.wikimedia.org/other/pageviews/"
