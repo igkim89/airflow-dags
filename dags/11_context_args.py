@@ -14,7 +14,11 @@ dag=DAG(
 )
 
 def _print_context(**kwargs):
-    print(kwargs)
+    print("execution_date = ", kwargs["execution_date"])
+    print("data_interval_start", kwargs["data_interval_start"])
+    print("data_interval_end", kwargs["data_interval_end"])
+    print("logical_date", kwargs["logical_date"])
+
 
 print_context=PythonOperator(
     task_id="print_context",
