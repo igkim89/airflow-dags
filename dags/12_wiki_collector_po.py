@@ -27,7 +27,7 @@ def _get_data(data_interval_start):
 
     print(url)
 
-    request.urlretrieve(url, DIR_PATH+"/{{data_interval_start.strftime('%Y%m%d-%H')}}.gz")
+    request.urlretrieve(url, DIR_PATH+f"/{data_interval_start.strftime('%Y%m%d-%H')}.gz")
 
 
 get_data=PythonOperator(
