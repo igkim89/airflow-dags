@@ -1,0 +1,22 @@
+import pendulum
+from airflow import DAG
+from airflow.operators.python import PythonOperator
+
+dag=DAG(
+    dag_id="11_context_args",
+    start_date=pendulum.today('Asia/Seoul').add(days=-1),
+    schedule_interval="@daily",
+    catchup=False,
+    tags=['igkim', 'test'],
+)
+
+def _print_context(**kwargs):
+    print(kwargs)
+
+
+print_context=PythonOperator(
+    task_id="print_context",
+    python_callable=_print_context,
+    dag=dag,
+)
+
