@@ -5,7 +5,7 @@ from airflow.operators.python import PythonOperator
 
 from urllib import request
 
-DIR_PATH="/opt/airflow/igkim/wiki-po"
+DIR_PATH="/opt/airflow/data/wiki-po"
 
 dag=DAG(
     dag_id="12_wiki_collector_po",
