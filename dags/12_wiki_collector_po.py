@@ -59,6 +59,6 @@ get_data=PythonOperator(
     dag=dag,
 )
 
-mkdir > get_data
+mkdir >> get_data
 
 
