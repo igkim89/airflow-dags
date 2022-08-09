@@ -4,9 +4,9 @@ from airflow.operators.python import PythonOperator
 
 dag = DAG(
     dag_id="13_task_context_list",
-    start_date=pendulum.today('Asia/Seoul').add(days=-1),
+    start_date=pendulum.today('Asia/Seoul').add(days=-3),
     schedule_interval="@daily",
-    catchup=False,
+    catchup=True,
     tags=['igkim', 'test'],
 )
 
@@ -20,3 +20,5 @@ print_context = PythonOperator(
     python_callable=_print_context,
     dag=dag,
 )
+
+print_context
