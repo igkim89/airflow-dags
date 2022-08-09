@@ -7,9 +7,9 @@ from airflow.operators.python import PythonOperator
 
 from urllib import request
 
-DIR_PATH="/opt/airflow/data/wiki-po"
+DIR_PATH = "/opt/airflow/data/wiki-po"
 
-dag=DAG(
+dag = DAG(
     dag_id="12_wiki_collector_po",
     start_date=dates.days_ago(1),
     schedule_interval="@hourly",
@@ -17,18 +17,19 @@ dag=DAG(
     tags=['igkim', 'test'],
 )
 
-def _mkdir(path):
+
+def _mkdir_path(path):
     try:
         if not os.path.exists(path):
             os.mkdir(path)
     except Exception as e:
         print(f"[ERROR] {e}")
 
-def _get_data(year, month, day, hour):
 
+def _get_data(year, month, day, hour):
     # year, month, day, hour, *_=execution_date.timetuple()
 
-    url=(
+    url = (
         "https://dumps.wikimedia.org/other/pageviews/"
         f"{year}/{year}-{month:0>2}/"
         f"pageviews-{year}{month:0>2}{day:0>2}-{hour:0>2}0000.gz"
@@ -36,18 +37,19 @@ def _get_data(year, month, day, hour):
 
     print(url)
 
-    request.urlretrieve(url, DIR_PATH+f"/{year}{month:0>2}{day:0>2}-{hour:0>2}.gz")
+    request.urlretrieve(url, DIR_PATH + f"/{year}{month:0>2}{day:0>2}-{hour:0>2}.gz")
 
-mkdir=PythonOperator(
+
+mkdir_path = PythonOperator(
     task_id="mkdir",
-    python_callable=_mkdir,
+    python_callable=_mkdir_path,
     op_args=[
         DIR_PATH
     ],
-    dag=dag
+    dag=dag,
 )
 
-get_data=PythonOperator(
+get_data = PythonOperator(
     task_id="get_data",
     python_callable=_get_data,
     op_args=[
@@ -59,6 +61,4 @@ get_data=PythonOperator(
     dag=dag,
 )
 
-mkdir >> get_data
-
-
+mkdir_path >> get_data
